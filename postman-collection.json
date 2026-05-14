@@ -1,0 +1,140 @@
+{
+  "info": {
+    "name": "OpenCollab API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{base_url}}/api/auth/register"},
+            "body": {"mode": "raw", "raw": "{\"name\":\"Test User\",\"email\":\"test@example.com\",\"password\":\"password123\"}"}
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{base_url}}/api/auth/login"},
+            "body": {"mode": "raw", "raw": "{\"email\":\"test@example.com\",\"password\":\"password123\"}"}
+          }
+        },
+        {
+          "name": "Google OAuth",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/api/auth/google"}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Projects",
+      "item": [
+        {
+          "name": "Get All Projects",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/api/projects"}
+          }
+        },
+        {
+          "name": "Search Projects",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/api/projects?q=react&commitment=Casual&open=true"}
+          }
+        },
+        {
+          "name": "Get Single Project",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/api/projects/:id"}
+          }
+        },
+        {
+          "name": "Create Project",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{token}}"}
+            ],
+            "url": {"raw": "{{base_url}}/api/projects"},
+            "body": {"mode": "raw", "raw": "{\"name\":\"My Project\",\"description\":\"Project description\",\"stack_tags\":[\"React\",\"Node.js\"],\"roles_needed\":[\"Frontend Developer\"],\"commitment\":\"Casual\"}"}
+          }
+        },
+        {
+          "name": "Update Project",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{token}}"}
+            ],
+            "url": {"raw": "{{base_url}}/api/projects/:id"},
+            "body": {"mode": "raw", "raw": "{\"name\":\"Updated Name\",\"description\":\"Updated description\",\"commitment\":\"Serious\"}"}
+          }
+        },
+        {
+          "name": "Delete Project",
+          "request": {
+            "method": "DELETE",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{base_url}}/api/projects/:id"}
+          }
+        },
+        {
+          "name": "Toggle Open Closed",
+          "request": {
+            "method": "PATCH",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{base_url}}/api/projects/:id/toggle-open"}
+          }
+        },
+        {
+          "name": "Apply to Project",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{token}}"}
+            ],
+            "url": {"raw": "{{base_url}}/api/projects/:id/apply"},
+            "body": {"mode": "raw", "raw": "{\"message\":\"I would love to collaborate!\",\"github_url\":\"https://github.com/username\"}"}
+          }
+        },
+        {
+          "name": "View Applicants (Owner Only)",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{base_url}}/api/projects/:id/applications"}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get User Profile",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/api/users/:id"}
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {"key": "base_url", "value": "https://opencollab-opq1.onrender.com"},
+    {"key": "token", "value": "your_jwt_token_here"}
+  ]
+}
