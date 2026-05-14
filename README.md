@@ -15,6 +15,8 @@ A fullstack platform where developers post projects they're working on and find 
 - Deployment: Render (backend), Vercel (frontend)
 
 ## Database Schema
+![Database Schema](./schema-diagram.png)
+
 Three tables: users, projects, applications
 - users: id, name, email, password_hash, google_id, created_at
 - projects: id, user_id, name, description, stack_tags, roles_needed, commitment, is_open, screenshot_url, created_at
