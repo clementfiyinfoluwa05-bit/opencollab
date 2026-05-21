@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const auth = require('../middleware/auth');
 const upload = require('../config/cloudinary');
-const rateLimit = require('express-rate-limit');
+const { rateLimit, ipKeyGenerator } = require('express-rate-limit');
 const {
   getAllProjects,
   getProject,
@@ -17,7 +17,7 @@ const {
 const createLimiter = rateLimit({
   windowMs: 60 * 60 * 1000,
   max: 10,
-  keyGenerator: (req) => req.user?.id || req.ip,
+  keyGenerator: (req) => req.user?.id || ipKeyGenerator(req),
   message: { error: 'Too many listings created. Wait before posting again.' }
 });
 
@@ -25,7 +25,7 @@ const createLimiter = rateLimit({
 const applyLimiter = rateLimit({
   windowMs: 60 * 60 * 1000,
   max: 20,
-  keyGenerator: (req) => req.user?.id || req.ip,
+  keyGenerator: (req) => req.user?.id || ipKeyGenerator(req),
   message: { error: 'Too many applications sent. Please wait.' }
 });
 
