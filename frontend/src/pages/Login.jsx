@@ -71,7 +71,7 @@ const Login = () => {
 
         <div style={styles.divider}>or</div>
 
-        <a href="http://localhost:5000/api/auth/google" style={styles.googleBtn}>
+        <a href="https://opencollab-opq1.onrender.com/api/auth/google" style={styles.googleBtn}>
           <img src="https://www.google.com/favicon.ico" width="18" style={{marginRight:'8px'}} />
           Continue with Google
         </a>

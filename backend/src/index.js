@@ -2,6 +2,11 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 
+// Log key non-secret env values at startup to help verify deployment config
+console.log('CONFIG: NODE_ENV=', process.env.NODE_ENV || 'development');
+console.log('CONFIG: FRONTEND_URL=', process.env.FRONTEND_URL);
+console.log('CONFIG: GOOGLE_CALLBACK_URL=', process.env.GOOGLE_CALLBACK_URL);
+
 // This imports db.js which triggers the connection test
 require('./config/db');
 
